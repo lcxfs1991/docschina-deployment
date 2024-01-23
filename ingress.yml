@@ -21,6 +21,7 @@ spec:
         - v4.webpack.docschina.org
         - recoil.docschina.org
         - babel.docschina.org
+        - esbuild.docschina.org
       secretName: star.docschina.org
   rules:
     - host: docschina.org
@@ -103,3 +104,13 @@ spec:
                 name: recoil
                 port:
                   number: 8086
+    - host: esbuild.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: esbuild
+                port:
+                  number: 8087
