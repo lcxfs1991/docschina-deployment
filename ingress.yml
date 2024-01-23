@@ -1,0 +1,105 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: docschina-website
+  # 声明命名空间
+  namespace: kube-public
+  # 自定义注解(声明ingress controller),traefik
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+    # http 重定向到 https
+    ingress.kubernetes.io/ssl-redirect: "True"
+spec:
+  tls:
+    - hosts:
+        - docschina.org
+        - www.docschina.org
+        - rollup.docschina.org
+        - webpack.docschina.org
+        - webpack4.docschina.org
+        - v4.webpack.docschina.org
+        - recoil.docschina.org
+        - babel.docschina.org
+      secretName: star.docschina.org
+  rules:
+    - host: docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: docschina-website
+                port:
+                  number: 8081
+    - host: www.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: docschina-website
+                port:
+                  number: 8081
+    - host: rollup.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rollup-docs-cn
+                port:
+                  number: 8082
+    - host: webpack.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webpack5
+                port:
+                  number: 8083
+    - host: webpack4.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webpack4
+                port:
+                  number: 8084
+    - host: v4.webpack.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webpack4
+                port:
+                  number: 8084
+    - host: babel.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: babel
+                port:
+                  number: 8085
+    - host: recoil.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: recoil
+                port:
+                  number: 8086
