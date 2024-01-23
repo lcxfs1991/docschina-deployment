@@ -22,6 +22,9 @@ spec:
         - recoil.docschina.org
         - babel.docschina.org
         - esbuild.docschina.org
+        - markdonw-it.docschina.org
+        - mdpress.docschina.org
+        - stencil.docschina.org
       secretName: star.docschina.org
   rules:
     - host: docschina.org
@@ -114,3 +117,33 @@ spec:
                 name: esbuild
                 port:
                   number: 8087
+    - host: markdown-it.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: markdown-it
+                port:
+                  number: 8088
+    - host: mdpress.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mdpress
+                port:
+                  number: 8089
+    - host: stencil.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: stencil
+                port:
+                  number: 8090
