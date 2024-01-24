@@ -13,8 +13,6 @@ metadata:
 spec:
   tls:
     - hosts:
-        - docschina.org
-        - www.docschina.org
         - rollup.docschina.org
         - webpack.docschina.org
         - webpack4.docschina.org
@@ -27,26 +25,6 @@ spec:
         - stencil.docschina.org
       secretName: star.docschina.org
   rules:
-    - host: docschina.org
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: docschina-website
-                port:
-                  number: 8081
-    - host: www.docschina.org
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: docschina-website
-                port:
-                  number: 8081
     - host: rollup.docschina.org
       http:
         paths:

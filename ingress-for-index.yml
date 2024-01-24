@@ -1,0 +1,39 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: docschina-index
+  # 声明命名空间
+  namespace: kube-public
+  # 自定义注解(声明ingress controller),traefik
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+    # http 重定向到 https
+    ingress.kubernetes.io/ssl-redirect: "True"
+spec:
+  tls:
+    - hosts:
+        - docschina.org
+        - www.docschina.org
+      secretName: docschina.org
+  rules:
+    - host: docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: docschina-website
+                port:
+                  number: 8081
+    - host: www.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: docschina-website
+                port:
+                  number: 8081
