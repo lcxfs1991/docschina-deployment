@@ -4,6 +4,7 @@ metadata:
   name: mysql-pv
   labels:
     pv: pv-docschina
+  namespace: kube-public
 spec:
   accessModes:
     - ReadWriteOnce
