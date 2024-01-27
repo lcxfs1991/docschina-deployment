@@ -23,6 +23,8 @@ spec:
         - markdonw-it.docschina.org
         - mdpress.docschina.org
         - stencil.docschina.org
+        - ecma262.docschina.org
+        - gfm.docschina.org
       secretName: star.docschina.org
   rules:
     - host: rollup.docschina.org
@@ -125,3 +127,23 @@ spec:
                 name: stencil
                 port:
                   number: 8090
+    - host: ecma262.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ecma262
+                port:
+                  number: 8091
+    - host: gfm.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gfm
+                port:
+                  number: 8092
