@@ -1,0 +1,43 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: docschina-website
+  namespace: kube-public
+  labels:
+    k8s-app: docschina-website
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: docschina-website
+  template:
+    metadata:
+      name: docschina-website
+      creationTimestamp: null
+      labels:
+        k8s-app: docschina-website
+    spec:
+      containers:
+        - name: docschina-website
+          image: ccr.ccs.tencentyun.com/docschina/docschina-website:main-1706701881624
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+      nodeName: vm-12-17-opencloudos
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
