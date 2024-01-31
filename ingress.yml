@@ -25,6 +25,7 @@ spec:
         - stencil.docschina.org
         - ecma262.docschina.org
         - gfm.docschina.org
+        - react.docschina.org
       secretName: star.docschina.org
   rules:
     - host: rollup.docschina.org
@@ -147,3 +148,13 @@ spec:
                 name: gfm
                 port:
                   number: 8092
+    - host: react.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: react
+                port:
+                  number: 8093
