@@ -1,0 +1,28 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: docschina-v4-webpack
+  # 声明命名空间
+  namespace: kube-public
+  # 自定义注解(声明ingress controller),traefik
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.rule.type: PathPrefixStrip
+    # http 重定向到 https
+    ingress.kubernetes.io/ssl-redirect: "True"
+spec:
+  tls:
+    - hosts:
+        - v4.webpack.docschina.org
+      secretName: v4.webpack.docschina.org
+  rules:
+    - host: v4.webpack.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webpack4
+                port:
+                  number: 8084

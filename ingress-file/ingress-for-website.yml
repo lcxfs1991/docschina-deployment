@@ -16,7 +16,7 @@ spec:
         - rollup.docschina.org
         - webpack.docschina.org
         - webpack4.docschina.org
-        - v4.webpack.docschina.org
+        # - v4.webpack.docschina.org
         - recoil.docschina.org
         - babel.docschina.org
         - esbuild.docschina.org
@@ -58,16 +58,16 @@ spec:
                 name: webpack4
                 port:
                   number: 8084
-    - host: v4.webpack.docschina.org
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: webpack4
-                port:
-                  number: 8084
+    # - host: v4.webpack.docschina.org
+    #   http:
+    #     paths:
+    #       - path: /
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: webpack4
+    #             port:
+    #               number: 8084
     - host: babel.docschina.org
       http:
         paths:
