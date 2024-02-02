@@ -1,3 +1,3 @@
 FROM nginx:1.19.10-alpine
 COPY default.conf /etc/nginx/conf.d/default.conf
-COPY logo /usr/share/nginx/html
+COPY cdn /usr/share/nginx/html
