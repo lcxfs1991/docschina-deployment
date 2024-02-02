@@ -27,7 +27,7 @@ spec:
                 name: docschina-website
                 port:
                   number: 8081
-          - path: /apai
+          - path: /api
             pathType: Prefix
             backend:
               service:
@@ -44,3 +44,8 @@ spec:
                 name: docschina-website
                 port:
                   number: 8081
+status:
+  loadBalancer:
+    ingress:
+      - ip: 111.229.109.39
+      - ip: 150.158.119.148

@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
         - name: docschina-api
-          image: ccr.ccs.tencentyun.com/docschina/docschina-api:main-1706608094756
+          image: ccr.ccs.tencentyun.com/docschina/docschina-api:release-20240201-68c53bfe9f7463425c9f2ecd1f6028a692419811
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
