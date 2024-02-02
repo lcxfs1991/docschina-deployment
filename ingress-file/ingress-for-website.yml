@@ -26,6 +26,7 @@ spec:
         - ecma262.docschina.org
         - gfm.docschina.org
         - react.docschina.org
+        - cdn.docschina.org
       secretName: star.docschina.org
   rules:
     - host: rollup.docschina.org
@@ -158,3 +159,13 @@ spec:
                 name: react
                 port:
                   number: 8093
+    - host: cdn.docschina.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cdn
+                port:
+                  number: 8094
