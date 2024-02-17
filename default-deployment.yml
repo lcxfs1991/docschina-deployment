@@ -14,14 +14,20 @@ spec:
       containers:
         - name: react
           image: ccr.ccs.tencentyun.com/docschina/react:main-1706347153913
-          resources: {}
+          resources: 
+            limits:
+              cpu: 250m
+              memory: 500Mi
+            requests:
+              cpu: 150m
+              memory: 200Mi
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
-      nodeName: vm-12-17-opencloudos
+      nodeName: vm-16-7-centos
       securityContext: {}
       schedulerName: default-scheduler
   strategy:
