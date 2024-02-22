@@ -21,14 +21,14 @@ spec:
     spec:
       containers:
         - name: docschina-website
-          image: ccr.ccs.tencentyun.com/docschina/docschina-website:main-1706701881624
+          image: ccr.ccs.tencentyun.com/docschina/docschina-website:main-1706808711234
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
-      nodeName: vm-12-17-opencloudos
+      nodeName: vm-16-7-centos
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
