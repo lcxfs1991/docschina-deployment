@@ -83,6 +83,13 @@ spec:
                 name: docschina-api
                 port:
                   number: 1337
+          - path: /blog
+            pathType: Prefix
+            backend:
+              service:
+                name: docschina-blog
+                port:
+                  number: 7000
           - path: /
             pathType: Prefix
             backend:
