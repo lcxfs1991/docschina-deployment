@@ -13,5 +13,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs
   nfs:
-    path: /home/data/docschina
+    path: /home/data/shop
     server: 111.229.109.39
