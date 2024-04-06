@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: docschina-shop-pv
+  labels:
+    pv: pv-docschina-shop
+  namespace: kube-public
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs
+  nfs:
+    path: /home/data/docschina
+    server: 111.229.109.39
