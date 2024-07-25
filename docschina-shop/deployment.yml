@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: docschina-shop
+  labels:
+    app: docschina-shop
+spec:
+  type: NodePort
+  selector: 
+    app:  docschina-shop
+  ports:
+    - protocol: TCP
+      port: 1337
+      targetPort: 1337
+      nodePort: 30252
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: docschina-shop
+  namespace: kube-public
+  labels:
+    k8s-app: docschina-shop
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: docschina-shop
+  template:
+    metadata:
+      name: docschina-shop
+      creationTimestamp: null
+      labels:
+        k8s-app: docschina-shop
+    spec:
+      containers:
+        - name: docschina-shop
+          image: ccr.ccs.tencentyun.com/docschina/docschina-shop:master-1712395692563
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: false
+          volumeMounts:
+          - mountPath: /docschina/public/uploads
+            name: docschina-shop-data
+      nodeName: vm-12-17-opencloudos
+      volumes:
+        - name: docschina-shop-data
+          persistentVolumeClaim:
+            claimName: docschina-shop-pvc
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
